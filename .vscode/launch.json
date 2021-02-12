@@ -5,9 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "myapp",
+            "name": "Current Device Debug",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode": "debug",
+        },
+        {
+            "name": "Current Device Profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+        },
+        {
+            "name": "Current Device Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+        },
+        {
+            "name": "Android",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "android",
+        },
+        {
+            "name": "iPhone",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "iphone",
         }
     ]
 }
