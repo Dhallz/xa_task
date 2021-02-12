@@ -6,7 +6,7 @@ import 'package:myapp/infrastructure/dtos/task/task_dto.dart';
 class TaskController {
   final TaskRepository taskRepository;
 
-  TaskController(this.taskRepository);
+  TaskController({@required this.taskRepository});
 
   Future<List<TaskEntity>> getTaskList() async {
     TaskEntity taskEntity;

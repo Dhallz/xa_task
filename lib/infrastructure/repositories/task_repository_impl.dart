@@ -9,7 +9,7 @@ class TaskRepositoryImpl implements TaskRepository {
   Future<List<TaskDto>> getTaskDtoList() async {
     Map<String, dynamic> json;
     List<TaskDto> taskDtoList;
-    Future.delayed(Duration(milliseconds: 100)).then((_) {
+    await Future.delayed(Duration(milliseconds: 100)).then((_) {
       json = {
         "message": "données recupérées avec succés",
         "data": [
@@ -37,7 +37,7 @@ class TaskRepositoryImpl implements TaskRepository {
         ],
       };
     });
-
+    taskDtoList = json['data'].map<TaskDto>((e) => TaskDto.fromJson(e)).toList();
     debugPrint("taskDtoList => ${taskDtoList.first.title}");
     return taskDtoList;
   }

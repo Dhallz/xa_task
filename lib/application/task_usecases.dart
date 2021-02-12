@@ -9,7 +9,7 @@ class TaskUsecases {
 
   TaskState taskState;
 
-  TaskUsecases(this.taskController);
+  TaskUsecases({@required this.taskController});
 
   addEvent({
     @required TaskEvents event,
@@ -50,5 +50,9 @@ class TaskUsecases {
         debugPrint("error");
       },
     );
+  }
+
+  TaskState getState() {
+    return taskState;
   }
 }
