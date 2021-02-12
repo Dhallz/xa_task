@@ -38,7 +38,10 @@ class TaskRepositoryImpl implements TaskRepository {
       };
     });
 
+    taskDtoList = json["data"].map<TaskDto>((element) => TaskDto.fromJson(element)).toList();
+
     debugPrint("taskDtoList => ${taskDtoList.first.title}");
+
     return taskDtoList;
   }
 
