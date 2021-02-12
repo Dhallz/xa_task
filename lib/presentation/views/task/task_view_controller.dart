@@ -12,7 +12,9 @@ class TaskViewController extends GetxController with StateMixin<TaskState> {
     @required this.usecases,
   });
 
-  RxList<TaskEntity> TaskList = <TaskEntity>[].obs;
+  RxList<TaskEntity> taskList = <TaskEntity>[].obs;
+
+  Rx<RxStatus> getTaskListStatus = RxStatus.empty().obs;
 
   @override
   void onInit() {
@@ -24,16 +26,16 @@ class TaskViewController extends GetxController with StateMixin<TaskState> {
   @override
   void onReady() {
     change(state, status: RxStatus.success());
-
-    usecases.addEvent(
-      event: TaskEvents.getTaskList(),
-      state: state,
+    ever(
+      getTaskListStatus,
+      (_) => usecases.addEvent(
+        event: TaskEvents.getTaskList(),
+        state: state,
+      ),
+      onDone: () => change(
+        usecases.getState(),
+      ),
     );
-
-    change(
-      usecases.getState(),
-    );
-
     super.onReady();
   }
 }

@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/presentation/views/task/task_view.dart';
+import 'package:get/get.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'presentation/navigation/navigation.dart';
+import 'presentation/navigation/routes.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: TaskView(),
-    );
-  }
+void main() async {
+  String initialRoute = await Routes.initialRoute;
+  runApp(GetMaterialApp(
+    title: "Task",
+    initialRoute: initialRoute,
+    getPages: Navigation.routes,
+  ));
 }

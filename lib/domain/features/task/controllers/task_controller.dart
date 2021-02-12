@@ -6,7 +6,9 @@ import 'package:myapp/infrastructure/dtos/task/task_dto.dart';
 class TaskController {
   final TaskRepository taskRepository;
 
-  TaskController(this.taskRepository);
+  TaskController({
+    this.taskRepository,
+  });
 
   Future<List<TaskEntity>> getTaskList() async {
     TaskEntity taskEntity;
@@ -15,7 +17,8 @@ class TaskController {
 
     taskDtoList = await taskRepository.getTaskDtoList();
 
-    taskEntityList = taskDtoList.map<TaskEntity>((e) => taskEntity.fromDto(e)).toList();
+    taskEntityList =
+        taskDtoList.map<TaskEntity>((e) => taskEntity.fromDto(e)).toList();
 
     debugPrint("taskEntityList => ${taskEntityList.first.title}");
 

@@ -9,7 +9,9 @@ class TaskUsecases {
 
   TaskState taskState;
 
-  TaskUsecases(this.taskController);
+  TaskUsecases({
+    this.taskController,
+  });
 
   addEvent({
     @required TaskEvents event,
