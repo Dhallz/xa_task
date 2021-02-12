@@ -26,8 +26,9 @@ class TaskUsecases {
         List<TaskEntity> taskEntityList;
 
         taskEntityList = await taskController.getTaskList();
-        debugPrint("Event => getTaskList");
+
         debugPrint("taskList => ${taskEntityList.first.title}");
+        debugPrint("Event => getTaskList");
       },
       deleteTask: () {
         debugPrint("Event => deleteTask");
@@ -51,5 +52,9 @@ class TaskUsecases {
         debugPrint("error");
       },
     );
+  }
+
+  TaskState getState() {
+    return taskState;
   }
 }
