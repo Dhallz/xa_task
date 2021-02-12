@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:myapp/domain/features/task/repositories/task_repository.dart';
+import 'package:myapp/infrastructure/dtos/dto_factory.dart';
 import 'package:myapp/infrastructure/dtos/task/task_dto.dart';
 
 class TaskRepositoryImpl implements TaskRepository {
@@ -37,6 +38,11 @@ class TaskRepositoryImpl implements TaskRepository {
         ],
       };
     });
+    DtoFactory dtoFactory;
+    List<Map<String, dynamic>> mapData = json["data"];
+    taskDtoList = mapData.map((e) {
+      return dtoFactory.fromJson(e);
+    }).toList();
 
     debugPrint("taskDtoList => ${taskDtoList.first.title}");
     return taskDtoList;
