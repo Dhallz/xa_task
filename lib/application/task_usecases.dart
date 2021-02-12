@@ -22,9 +22,10 @@ class TaskUsecases {
       init: () {
         debugPrint("Event => Init");
       },
-      getTaskList: () {
+      getTaskList: () async {
         List<TaskEntity> taskEntityList;
 
+        taskEntityList = await taskController.getTaskList();
         debugPrint("Event => getTaskList");
         debugPrint("taskList => ${taskEntityList.first.title}");
       },

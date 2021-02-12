@@ -15,11 +15,10 @@ class TaskController {
 
     taskDtoList = await taskRepository.getTaskDtoList();
 
-    taskDtoList.forEach((taskDto) {
-      taskEntityList.add(taskEntity.fromDto(taskDto));
-    });
+    taskEntityList = taskDtoList.map<TaskEntity>((e) => taskEntity.fromDto(e)).toList();
 
     debugPrint("taskEntityList => ${taskEntityList.first.title}");
+
     return taskEntityList;
   }
 }
