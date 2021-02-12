@@ -44,31 +44,33 @@ class TaskView extends GetView<TaskViewController> {
   }
 
   Widget _buildContent() {
-    return ListView.separated(
-      padding: const EdgeInsets.all(12),
-      separatorBuilder: (context, index) {
-        return Divider(
-          color: Colors.black38,
-          thickness: 1,
-        );
-      },
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            controller.taskList[index].title,
-          ),
-          subtitle: Text(
-            controller.taskList[index].date.toString(),
-          ),
-          leading: Text(
-            controller.taskList[index].id.toString(),
-          ),
-          trailing: Text(
-            controller.taskList[index].description,
-          ),
-        );
-      },
-      itemCount: controller.taskList.length,
+    return Obx(
+      () => ListView.separated(
+        padding: const EdgeInsets.all(12),
+        separatorBuilder: (context, index) {
+          return Divider(
+            color: Colors.black38,
+            thickness: 1,
+          );
+        },
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(
+              controller.taskList[index].title,
+            ),
+            subtitle: Text(
+              controller.taskList[index].date.toString(),
+            ),
+            leading: Text(
+              controller.taskList[index].id.toString(),
+            ),
+            trailing: Text(
+              controller.taskList[index].description,
+            ),
+          );
+        },
+        itemCount: controller.taskList.length,
+      ),
     );
   }
 }

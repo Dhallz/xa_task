@@ -28,10 +28,15 @@ class TaskViewController extends GetxController with StateMixin<TaskState> {
     change(state, status: RxStatus.success());
     ever(
       getTaskListStatus,
-      (_) => usecases.addEvent(
-        TaskEvents.getTaskList(),
-        state,
-      ),
+      (_) {
+        taskList
+          ..clear()
+          ..addAll(usecases.taskEntityList);
+        return usecases.addEvent(
+          event: TaskEvents.getTaskList(),
+          state: state,
+        );
+      },
       onDone: () => change(
         usecases.getState(),
       ),

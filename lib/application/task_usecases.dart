@@ -8,15 +8,16 @@ class TaskUsecases {
   final TaskController taskController;
 
   TaskState taskState;
+  List<TaskEntity> taskEntityList = <TaskEntity>[];
 
   TaskUsecases({
     @required this.taskController,
   });
 
-  addEvent([
-    TaskEvents event,
-    TaskState state,
-  ]) {
+  addEvent({
+    @required TaskEvents event,
+    @required TaskState state,
+  }) {
     event.maybeWhen(
       none: () {
         debugPrint("Event => None");
@@ -25,8 +26,6 @@ class TaskUsecases {
         debugPrint("Event => Init");
       },
       getTaskList: () async {
-        List<TaskEntity> taskEntityList = <TaskEntity>[];
-
         taskEntityList = await taskController.getTaskList();
 
         debugPrint("taskList => ${taskEntityList.first.title}");
