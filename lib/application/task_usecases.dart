@@ -9,7 +9,9 @@ class TaskUsecases {
 
   TaskState taskState;
 
-  TaskUsecases(this.taskController);
+  TaskUsecases({
+    this.taskController,
+  });
 
   addEvent({
     @required TaskEvents event,
@@ -22,11 +24,13 @@ class TaskUsecases {
       init: () {
         debugPrint("Event => Init");
       },
-      getTaskList: () {
+      getTaskList: () async {
         List<TaskEntity> taskEntityList;
 
-        debugPrint("Event => getTaskList");
+        taskEntityList = await taskController.getTaskList();
+
         debugPrint("taskList => ${taskEntityList.first.title}");
+        debugPrint("Event => getTaskList");
       },
       deleteTask: () {
         debugPrint("Event => deleteTask");
@@ -50,5 +54,9 @@ class TaskUsecases {
         debugPrint("error");
       },
     );
+  }
+
+  TaskState getState() {
+    return taskState;
   }
 }
