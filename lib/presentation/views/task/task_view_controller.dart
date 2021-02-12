@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/application/task_events.dart';
 import 'package:myapp/application/task_state.dart';
@@ -29,8 +29,8 @@ class TaskViewController extends GetxController with StateMixin<TaskState> {
     ever(
       getTaskListStatus,
       (_) => usecases.addEvent(
-        event: TaskEvents.getTaskList(),
-        state: state,
+        TaskEvents.getTaskList(),
+        state,
       ),
       onDone: () => change(
         usecases.getState(),

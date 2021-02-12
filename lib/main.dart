@@ -6,9 +6,11 @@ import 'presentation/navigation/routes.dart';
 
 void main() async {
   String initialRoute = await Routes.initialRoute;
-  runApp(GetMaterialApp(
-    title: "Task",
-    initialRoute: initialRoute,
-    getPages: Navigation.routes,
-  ));
+  runApp(
+    GetMaterialApp(
+      title: "Task",
+      initialRoute: initialRoute,
+      getPages: Navigation.routes,
+    ),
+  );
 }

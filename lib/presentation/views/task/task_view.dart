@@ -14,9 +14,10 @@ class TaskView extends GetView<TaskViewController> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextButton(
-                onPressed: () =>
-                    controller.getTaskListStatus.value = RxStatus.loading(),
-                child: Text("clic me")),
+              onPressed: () =>
+                  controller.getTaskListStatus.value = RxStatus.loading(),
+              child: Text("Clic me"),
+            ),
           ),
           Divider(),
           Expanded(child: _buildContent()),
@@ -54,20 +55,20 @@ class TaskView extends GetView<TaskViewController> {
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(
-            'Task $index',
+            controller.taskList[index].title,
           ),
           subtitle: Text(
-            'Date',
+            controller.taskList[index].date.toString(),
           ),
           leading: Text(
-            '$index',
+            controller.taskList[index].id.toString(),
           ),
           trailing: Text(
-            'Description',
+            controller.taskList[index].description,
           ),
         );
       },
-      itemCount: 10,
+      itemCount: controller.taskList.length,
     );
   }
 }

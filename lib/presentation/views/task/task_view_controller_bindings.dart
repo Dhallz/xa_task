@@ -8,31 +8,23 @@ import 'package:myapp/presentation/views/task/task_view_controller.dart';
 class TaskViewControllerBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<TaskViewController>(
-      () => TaskViewController(
-        usecases: Get.put(
-          TaskUsecases(
-            taskController: Get.put(
-              TaskController(
-                taskRepository: Get.put<TaskRepository>(TaskRepositoryImpl()),
-              ),
-            ),
-          ),
-        ),
+    Get.put<TaskRepository>(
+      TaskRepositoryImpl(),
+    );
+    Get.put(
+      TaskController(
+        taskRepository: Get.find<TaskRepository>(),
       ),
     );
-    // Get.put<TaskRepository>(
-    //   TaskRepositoryImpl(),
-    // );
-    // Get.put(
-    //   TaskController(
-    //     Get.find<TaskRepository>(),
-    //   ),
-    // );
-    // Get.put(
-    //   TaskUsecases(
-    //     Get.find<TaskController>(),
-    //   ),
-    // );
+    Get.put(
+      TaskUsecases(
+        taskController: Get.find<TaskController>(),
+      ),
+    );
+    Get.put(
+      TaskViewController(
+        usecases: Get.find<TaskUsecases>(),
+      ),
+    );
   }
 }

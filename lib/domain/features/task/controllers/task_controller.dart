@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:myapp/domain/features/task/entities/task_entity.dart';
 import 'package:myapp/domain/features/task/repositories/task_repository.dart';
 import 'package:myapp/infrastructure/dtos/task/task_dto.dart';
@@ -7,18 +8,17 @@ class TaskController {
   final TaskRepository taskRepository;
 
   TaskController({
-    this.taskRepository,
+    @required this.taskRepository,
   });
 
   Future<List<TaskEntity>> getTaskList() async {
-    TaskEntity taskEntity;
-    List<TaskDto> taskDtoList;
-    List<TaskEntity> taskEntityList;
+    List<TaskDto> taskDtoList = <TaskDto>[];
+    List<TaskEntity> taskEntityList = <TaskEntity>[];
 
     taskDtoList = await taskRepository.getTaskDtoList();
 
     taskEntityList =
-        taskDtoList.map<TaskEntity>((e) => taskEntity.fromDto(e)).toList();
+        taskDtoList.map<TaskEntity>((e) => TaskEntity().fromDto(e)).toList();
 
     debugPrint("taskEntityList => ${taskEntityList.first.title}");
 
